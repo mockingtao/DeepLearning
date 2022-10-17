@@ -46,7 +46,7 @@ def _load_label(file_name):
     
     print("Converting " + file_name + " to NumPy Array ...")
     with gzip.open(file_path, 'rb') as f:
-            labels = np.frombuffer(f.read(), np.uint8, offset=8)
+            labels = np.frombuffer(f.read(), np.uint8, offset=8) # cc：将缓冲区（二进制编码文件）解释为一维数组
     print("Done")
     
     return labels
@@ -57,7 +57,7 @@ def _load_img(file_name):
     print("Converting " + file_name + " to NumPy Array ...")    
     with gzip.open(file_path, 'rb') as f:
             data = np.frombuffer(f.read(), np.uint8, offset=16)
-    data = data.reshape(-1, img_size)
+    data = data.reshape(-1, img_size) # cc：一维数组变为n*784的数组
     print("Done")
     
     return data
@@ -126,3 +126,7 @@ def load_mnist(normalize=True, flatten=True, one_hot_label=False):
 
 if __name__ == '__main__':
     init_mnist()
+
+# __name__ 是当前模块名，当模块被直接运行时，模块名为 __main__
+# 模块被直接运行时 init_mnist()将被运行
+# 当模块是被导入时 init_mnist()不被运行

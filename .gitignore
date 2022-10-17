@@ -8,4 +8,6 @@ static-files/*
 /*/novels/*
 /*/*.model
 .DS_Store
+*.pkl
+*.gz
 *.pdf
